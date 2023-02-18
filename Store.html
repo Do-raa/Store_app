@@ -1,0 +1,273 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<style> 
+
+    body {
+        background-color: #F5F5F5;
+    }
+    
+    .search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        margin-top: 80px;
+    }
+
+    #box {
+        width: 100%;
+        max-width: 600px;
+        max-height: 100px;
+        padding: 10px; 
+        box-shadow: 1px 0px 1px 1px;
+        border: 2px solid #443C68;
+        border-radius: 5px 0 0 5px;
+        font-size: 18px;
+    }
+    #box:focus {
+        opacity: 0.5;
+    }
+    #btn {
+        background-color: #da862b; 
+        text-align: center;
+        width: 80px;
+        height: 51px;
+        color: #fff;
+        box-shadow: 0px 2px 2px 2px;
+        padding: 0 10px 0 10px;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        font-size: 20px;
+        cursor: pointer; 
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        transition: all 0.3s ease;
+    }
+
+    #btn:hover {
+        opacity: 0.5;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 16px;
+        margin: 16px; 
+        max-height: 500px;
+        width: 400px;
+    }
+
+    .card h2 {
+        font-size: 24px;
+        font-family: monospace;
+        font-weight: bold;
+    }
+
+    .card p {
+        font-size: 18px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .card img {
+        max-width: 400px;
+        max-height: 200px;
+        margin-bottom: 5px; 
+    }
+    .card p:last-child {
+        font-weight: bold;
+    }
+
+    #cards-container {
+        margin-top: 80px;
+        margin-bottom: 50px; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    } 
+
+    .dropdowns {
+        display: flex;
+        margin: 5% 10% 0 70%;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .cartbtn {
+        border: none;
+        border-radius: 8px;
+        text-align: center;
+        font-family: cursive; 
+        color: rgb(9, 172, 118);
+        font-size: 18px;
+        font-weight: bold; 
+        padding: 5px; 
+        /* margin-bottom: 2px; this is not working */
+    } 
+    .cartbtn:hover {
+        opacity: 0.5;
+    }
+</style>
+<body>
+    <div class="search-box">
+          <input id="box" type="text" placeholder="Search...">
+          <button id="btn" type="submit">Go</button>
+    </div>
+     
+    <div class="dropdowns">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by : Price
+        </a>
+      
+        <ul class="dropdown-menu" id="pricedropdown">
+            <li><a class="dropdown-item" href="#">Less than 50.00</a></li>
+            <li><a class="dropdown-item" href="#">Between 50.00 and 100.00</a></li>
+            <li><a class="dropdown-item" href="#">Up to 100.00</a></li>
+        </ul>
+   
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by : Category
+        </a>
+      
+        <ul class="dropdown-menu" id="categorydropdown" >
+            <li><a class="dropdown-item" href="#">Clothes</a></li>
+            <li><a class="dropdown-item" href="#">Accessories</a></li> 
+            <li><a class="dropdown-item" href="#">Shoes</a></li> 
+        </ul>
+    </div>
+
+    <div id="cards-container"></div>
+
+
+    <script src="Store.js">
+        const cardsContainer = document.getElementById('cards-container'); 
+        const input = document.querySelector('input') 
+        const btn = document.getElementById('btn')
+        const pricedropdown = document.getElementById('pricedropdown')
+        const categorydropdown = document.getElementById('categorydropdown')
+        
+        let i, filteredData 
+
+        fetch('data.json')
+        .then(response => response.json())
+        .then(data => { 
+            data.forEach(el => {
+            createCardForProduct(el)
+            }) 
+
+            input.addEventListener('input', () =>{
+                cardsContainer.innerHTML = ""
+                i = input.value.length - 1
+                console.log(input.value.length)
+                input.value.length === 0 ?  filteredData = data
+                                        : filteredData = data.filter(el =>  el.name.toLowerCase().includes(input.value.toLowerCase())) 
+                                  
+ 
+                filteredData.length != 0 ?  filteredData.forEach(el => createCardForProduct(el)) : cardsContainer.innerHTML = "No result found !" 
+                //data = filteredData
+                
+            })
+
+            btn.addEventListener('click', () =>{
+                cardsContainer.innerHTML = ""
+                let filteredData = data.filter(el => input.value.toLowerCase().includes(el.name.toLowerCase())) 
+                filteredData.length != 0 ?  filteredData.forEach(el => createCardForProduct(el)) : cardsContainer.innerHTML = "No result found !"
+            })
+
+        // Handle price range dropdown selection
+        Array.from(pricedropdown.children).map(el => {
+            el.addEventListener('click', function() {
+                const priceRange = this.textContent;
+                cardsContainer.innerHTML = ""; // Clear existing cards
+                let filteredData;
+                switch (priceRange) {
+                case "Less than 50.00":
+                    filteredData = data.filter(el => el.price < 50.00);
+                    break;
+                case "Between 50.00 and 100.00":
+                    filteredData = data.filter(el => el.price >= 50.00 && el.price <= 100.00);
+                    break;
+                case "Up to 100.00":
+                    filteredData = data.filter(el => el.price > 100.00);
+                    break;
+                default:
+                    filteredData = data;
+                }
+                // Create cards for products in the selected price range
+                filteredData.forEach(el => {
+                createCardForProduct(el);
+                })
+            })})
+       
+        
+        // Handle category dropdown selection
+        Array.from(categorydropdown.children).map(el => {
+            el.addEventListener('click', function() {
+                const category = this.textContent;
+                cardsContainer.innerHTML = ""; // Clear existing cards
+                let filteredData;
+                switch (category) {
+                case "Clothes":
+                    filteredData = data.filter(el => el.category === "clothes");
+                    break;
+                case "Accessories":
+                    filteredData = data.filter(el => el.category === "accessories");
+                    break;
+                case "Shoes":
+                    filteredData = data.filter(el => el.category === "shoes");
+                    break;
+                default:
+                    filteredData = data;
+                }
+                // Create cards for products in the selected category
+                filteredData.forEach(el => {
+                createCardForProduct(el);
+                })
+            }) 
+        })
+    }) 
+        // Create cards for products
+        function createCardForProduct (el) {
+
+            const card = document.createElement('div') 
+            card.classList.add('card');
+
+            let _img = document.createElement('img')
+            _img.src = el.imageLink
+
+            let cardTitle = document.createElement('h2') 
+            cardTitle.textContent = el.name 
+
+            let cardDes = document.createElement('p') 
+            cardDes.textContent = el.description 
+
+            const cardCategory = document.createElement('p');
+            cardCategory.textContent = `Category: ${el.category}`;
+
+            const cardPrice = document.createElement('p');
+            cardPrice.textContent = `Price: $${el.price}`;
+
+            const btn = document.createElement('button')
+            btn.classList.add('cartbtn')
+            btn.textContent = "Add to cart"
+
+            card.appendChild(cardTitle)
+            card.appendChild(_img)
+            card.appendChild(cardDes) 
+            card.appendChild(cardCategory)
+            card.appendChild(cardPrice)
+            card.appendChild(btn)
+
+            cardsContainer.appendChild(card)
+
+            //handle button 
+            btn.onclick = () => {
+                window.location.href = "Profile.html"
+            }
+        } 
+
+        
+    </script>
+</body>
+</html>

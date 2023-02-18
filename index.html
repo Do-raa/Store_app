@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head> 
+<style>
+    .nav  li  a {
+      color: #B3005E;
+      font-size: 16px;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-weight: bold;
+    }
+
+    .nav  li  a:hover { 
+      color: #ec99c5;
+    }
+</style>
+<body>
+    <ul class="nav nav-tabs">
+        <li class="nav-item-home">
+          <a class="nav-link active" aria-current="page"  href="/">Home</a>
+        </li>
+        <li class="nav-item-store">
+          <a class="nav-link" href="Store.html">Store</a>
+        </li>
+        <li class="nav-item-profile">
+          <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li class="nav-item-cart">
+          <a class="nav-link" href="#" >Cart</a>
+        </li> 
+        <li class="nav-item-checkout">
+          <a class="nav-link" href="#" tabindex="-1" >Checkout</a>
+        </li>
+      </ul> 
+      
+      <div id="page-content"></div>
+
+      <script>
+
+        const pageContent = document.getElementById('page-content'); 
+        const links = document.querySelectorAll('a') 
+
+        function loadPage(pageUrl) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) { 
+                  pageContent.innerHTML = this.responseText;
+
+            // Load and execute any scripts in the responseText
+            let scripts = pageContent.querySelectorAll('script'); 
+            for (var i = 0; i < scripts.length; i++) {
+                  var script = scripts[i];
+                  var newScript = document.createElement('script'); 
+                  newScript.textContent = script.textContent;
+                  document.body.appendChild(newScript);
+                }
+            }};
+            xhttp.open('GET', pageUrl, true);
+            xhttp.send();
+        }
+        
+        //remove the previous active class and add it to the new clicked link
+        const setNavLinkToActive = (e, link) =>{
+          e.preventDefault(); 
+          links.forEach(link => link.classList.contains('active') ? link.classList.remove('active') : null)
+          link.classList.add('active')
+        }
+
+        //history.pushState( '', '', 'index.html')
+        loadPage('Home.html') ; // Load the home page by default
+
+        // Load the page according to its link in the navbar 
+        links[0].addEventListener('click', function(e) {
+          setNavLinkToActive(e, this) 
+          history.pushState( '', '', 'Home.html')
+          loadPage('Home.html')
+        });
+
+        links[1].addEventListener('click', function(e) {
+          setNavLinkToActive(e, this) 
+          history.pushState( '', '', 'Store.html')
+          loadPage('Store.html');
+        });
+
+        links[2].addEventListener('click', function(e) {
+          setNavLinkToActive(e, this)
+          history.pushState( '', '', 'Profile.html')
+          loadPage('Profile.html');
+        }); 
+
+        links[3].addEventListener('click', function(e) {
+          setNavLinkToActive(e, this) 
+          history.pushState( '', '', 'Cart.html')
+          loadPage('Cart.html');
+        }); 
+
+        links[4].addEventListener('click', function(e) {
+          setNavLinkToActive(e, this) 
+          history.pushState( '', '', 'CheckOut.html')
+          loadPage('CheckOut.html');
+        });
+
+        
+    
+      </script>
+      
+</body>
+</html>
