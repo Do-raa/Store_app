@@ -170,7 +170,7 @@
             })
 
             btn.addEventListener('click', () =>{
-                cardsContainer.innerHTML = ""
+                cardsContainer.innerHTML = "";
                 let filteredData = data.filter(el => input.value.toLowerCase().includes(el.name.toLowerCase())) 
                 filteredData.length != 0 ?  filteredData.forEach(el => createCardForProduct(el)) : cardsContainer.innerHTML = "No result found !"
             })
