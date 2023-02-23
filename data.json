@@ -5,7 +5,13 @@
       "description": "A plain white t-shirt made from 100% cotton.",
       "category": "clothes",
       "imageLink": "/images/WHITE TSHIRTS.webp",
-      "price": 15.99
+      "price": 15.99,
+      "details": {
+        "material": "100% cotton",
+        "color": "white",
+        "size": "S/L/XLL",
+        "style": "regular"
+      }
     },
     {
       "id": 2,
@@ -13,7 +19,13 @@
       "description": "A grey sweatshirt made from a soft, fleece material.",
       "category": "clothes", 
       "imageLink": "/images/sweat_shirt.jpg",
-      "price": 39.99
+      "price": 39.99, 
+      "details": {
+        "material": "fleece",
+        "color": "grey", 
+        "size": "Standard",
+        "style": "regular"
+      }
     },
     {
       "id": 3,
@@ -21,7 +33,13 @@
       "description": "Dark wash denim jeans with a straight leg fit.",
       "category": "clothes", 
       "imageLink": "/images/jeans.jpg",
-      "price": 49.99
+      "price": 49.99, 
+      "details": {
+        "material": "denim",
+        "color": "dark wash",
+        "size": "S/M/L",
+        "style": "straight leg"
+      }
     },
     {
       "id": 4,
@@ -29,7 +47,13 @@
       "description": "A black leather jacket with silver hardware.",
       "category": "clothes", 
       "imageLink": "/images/jackt.jpg",
-      "price": 199.99
+      "price": 199.99, 
+      "details": {
+        "material": "leather",
+        "color": "black",
+        "size": "L/XL",
+        "style": "biker"
+      }
     },
     {
       "id": 5,
@@ -37,7 +61,13 @@
       "description": "White low-top sneakers with a rubber sole.",
       "category": "shoes",
       "imageLink": "/images/sneak.jpg",
-      "price": 59.99
+      "price": 59.99, 
+      "details": {
+        "material": "leather and rubber",
+        "color": "white",
+        "size": "39",
+        "style": "low-top"
+      }
     },
     {
       "id": 6,
@@ -45,7 +75,13 @@
       "description": "Black leather ankle boots with a chunky heel.",
       "category": "shoes", 
       "imageLink": "/images/boots.jpg",
-      "price": 99.99
+      "price": 99.99, 
+      "details": {
+        "material": "leather",
+        "color": "black", 
+        "size": "38/40/42",
+        "style": "ankle"
+      }
     },
     {
       "id": 7,
@@ -53,7 +89,13 @@
       "description": "A knit beanie in a deep burgundy color.",
       "category": "accessories", 
       "imageLink": "/images/beanie.jpg",
-      "price": 19.99
+      "price": 19.99, 
+      "details": {
+        "material": "knit",
+        "color": "burgundy",
+        "size": "Standard",
+        "style": "beanie"
+      }
     },
     {
       "id": 8,
@@ -61,7 +103,13 @@
       "description": "A canvas backpack with leather straps and gold hardware.",
       "category": "accessories",
       "imageLink": "/images/backpack.jpg",
-      "price": 79.99
+      "price": 79.99, 
+      "details": {
+        "material": "knit",
+        "color": "beige",
+        "size": "Meduim size",
+        "style": "casual"
+      }
     },
     {
       "id": 9,
@@ -69,7 +117,13 @@
       "description": "A brown leather belt with a silver buckle.",
       "category": "accessories",
       "imageLink": "/images/belt.jpg",
-      "price": 29.99
+      "price": 29.99, 
+      "details": {
+        "material": "leather",
+        "color": "brown",
+        "size": "standard",
+        "style": "stylish"
+      }
     },
     {
       "id": 10,
@@ -77,7 +131,13 @@
       "description": "A classic silver watch with a leather band.",
       "category": "accessories",
       "imageLink": "/images/watch.jpg",
-      "price": 149.99
+      "price": 149.99, 
+      "details": {
+        "material": "leather",
+        "color": "black",
+        "size": "standard",
+        "style": "sport"
+      }
     },
     {
       "id": 11,
@@ -85,7 +145,13 @@
       "description": "A black hoodie with a graphic print on the front.",
       "category": "clothes", 
       "imageLink": "/images/hoodie.jpg",
-      "price": 34.99
+      "price": 34.99, 
+      "details": {
+        "material": "100% cotton",
+        "color": "black",
+        "size": "L/XL",
+        "style": "stylish"
+      }
     },
     {
       "id": 12,
@@ -93,15 +159,27 @@
       "description": "A white dress shirt with a slim fit and spread collar.",
       "category": "clothes",
       "imageLink": "/images/dressshirt.jpg",
-      "price": 49.99
+      "price": 49.99, 
+      "details": {
+        "material": "line",
+        "color": "white",
+        "size": "S/M/L",
+        "style": "class"
+      }
     },
     {
       "id": 13,
       "name": "Chinos",
-      "description": "Beige chinos with a tapered leg and cuffed ankle.",
+      "description": "Blue chinos with a tapered leg and cuffed ankle.",
       "category": "clothes", 
       "imageLink": "/images/chinos.jpg",
-      "price": 39.99
+      "price": 39.99, 
+      "details": {
+        "material": "line",
+        "color": "blue",
+        "size": "S/L/XLL",
+        "style": "stylish"
+      }
     },
     {
       "id": 14,
@@ -109,7 +187,13 @@
       "description": "A navy blazer with gold buttons and a tailored fit.",
       "category": "clothes",
       "imageLink": "/images/blazer.jpg",
-      "price": 149.99
+      "price": 149.99, 
+      "details": {
+        "material": "line",
+        "color": "white",
+        "size": "standard",
+        "style": "class"
+      }
     }]
   
     
