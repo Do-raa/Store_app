@@ -1,0 +1,119 @@
+body {
+    background-color: #F5F5F5;
+}
+
+.nav  li  a {
+    color: #ff0033e1;
+    font-size: 16px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.nav  li  a:hover { 
+    color: #e14e6be1;
+}  
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 16px; 
+    max-height: 700px;
+    width: 400px;
+}
+
+.card h2 {
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card img {
+    max-width: 400px;
+    max-height: 200px;
+    margin-bottom: 5px; 
+}
+.card p:last-child{
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+#cardsContainer {
+    margin-top: 80px;
+    margin-bottom: 50px; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} 
+
+.container {
+    display: flex; 
+    flex-wrap: wrap;  
+    position: absolute;
+    left: 0; 
+    top: 77%; 
+    margin: 5px;
+} 
+
+button {
+    margin: 3px; 
+    align-items: center; 
+    border-radius: 4px; 
+    width: 25px; 
+    height: 25px; 
+    border: none;
+    font-weight: bold; 
+    background: linear-gradient( #EAE0DA, #FAAB78); 
+} 
+
+button:hover {
+    opacity: 0.5;
+} 
+
+/* Style the close button (span) */
+.close {
+    cursor: pointer;
+    display: inline-block;
+    position:absolute;
+    right:0;
+    margin-right: 16px;
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: bold; 
+    color : #FF1E00
+}
+
+.close:hover {
+    opacity: 0.3;
+} 
+
+#sign_in {  
+    position:absolute;
+    right:0;
+    font-size: 40px; 
+    color: #3A4F7A;  
+    margin: 8px 20px 8px 2px; 
+    cursor: pointer;
+} 
+
+#sign_in:hover {
+    opacity: 0.5;
+} 
+
+#sign_out { 
+    position:absolute;
+    right:0;
+    font-size: 40px; 
+    color: #3A4F7A;  
+    margin: 8px 20px 8px 2px; 
+    cursor: pointer;
+} 
+
+#sign_out:hover {
+    opacity: 0.5;
+}

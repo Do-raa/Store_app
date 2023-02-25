@@ -1,0 +1,45 @@
+body {
+    background: linear-gradient(to right, #F5F5F5, #5c5959);
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    background-color: #EB455F;
+}
+
+.btn-login:hover { 
+    background-color: #e995a2;
+}
+
+.container {
+  margin-top: 10%;
+}
+
+.container:hover { 
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+} 
+
+.card-title {
+    font-size: 30px;
+} 
+
+p {
+  color : #FF1E00;
+  font-size: 14px;
+  font-weight: bold;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.fa {
+    margin: 20;
+} 
+
+.fa:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
