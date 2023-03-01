@@ -46,9 +46,15 @@ const passwordValidation = () => {
 btn.addEventListener('click', (e) => { 
     e.preventDefault() 
     
-    if( inputsValidation() && passwordValidation() && emailValidation() ) {
-        localStorage.setItem('email', email_input.value)
-        history.back() 
+    if( inputsValidation() && passwordValidation() && emailValidation() ) { 
+        fetch('https://api.storerestapi.com/users')
+        .then(response => response.json()) 
+        .then(res => res.data.forEach(user => {
+            user.email == email_input.value && user.password == password_input.value ? 
+                localStorage.setItem('email', email_input.value) & history.back() : 
+                fields_warning.innerHTML = "This user doesn't exist ! " 
+        }))
+        .catch(err => console.log(err))  
     }
 }) 
 

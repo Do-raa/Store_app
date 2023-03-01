@@ -1,6 +1,7 @@
 const cardsContainer = document.getElementById("cardsContainer") 
 const signIn_icon = document.getElementById('sign_in') 
 const signOut_icon = document.getElementById('sign_out')
+const total_pg = document.getElementById('total') 
 
 
 
@@ -19,80 +20,106 @@ function setIcon() {
 
 setIcon()
 
-fetch('../data.json')
+fetch('https://api.escuelajs.co/api/v1/products')
     .then(response => response.json()) 
     .then((data) => { 
-        console.log(data)
         // Create card elements for each product in the cartProducts array 
         data.forEach((product) => { 
-            console.log(JSON.parse(localStorage.getItem('id')))
             if(product.id == JSON.parse(localStorage.getItem('id'))?.find((item)=> item.id == product.id )?.id) 
-                { createCardForProduct(product) } 
+                { 
+                    let quantity = JSON.parse(localStorage.getItem('id')).find((item)=> item.id == product.id ).quantity
+                    createCardForProduct(product, quantity) 
+                } 
         })
 }) 
 
  // Create cards for products
-    function createCardForProduct (el) { 
-    let counter = 1 
+    function createCardForProduct (el, quantity) { 
+
+    let id = el.id
     let totall = el.price 
+   
+    cardsContainer.innerHTML += `
+    <div class = "card"> 
+        <h2>${el.title}</h2> 
+        <p class = "close"> X </p> 
+        <div class="content">
+        <div>
+        <img src="${el.images[0]}" alt ='img' />  
+        </div>
+        <div style="margin-left: 20px; padding: 10px">
+        <p>Category: ${el.category.name}</p> 
+        <p>Price: $${el.price}</p> 
+        <p> Quantity : </p> 
+        <button class ="minus" onclick ="${decrease()}"> - </button> 
+        <p id="qty"> ${quantity} </p> 
+        <button class ="plus" onclick ="${increase()}"> + </button> 
+        <div>
+        </div>
+    </div>
+    ` 
 
-    const card = document.createElement('div') 
-    card.classList.add('card');
-
-    let cardTitle = document.createElement('h2') 
-    cardTitle.textContent = el.name 
-
-    let span = document.createElement('span') 
-    span.classList.add('close') 
-    span.textContent = 'X'
-
-    cardTitle.appendChild(span)
-    card.appendChild(cardTitle)
-
-    let _img = document.createElement('img')
-    _img.src = el.imageLink
-    card.appendChild(_img)
-
-    const cardCategory = document.createElement('p');
-    cardCategory.textContent = `Category: ${el.category}`;
-    card.appendChild(cardCategory)
-
-    const cardPrice = document.createElement('p');
-    cardPrice.textContent = `Price: $${el.price}`; 
-    card.appendChild(cardPrice) 
-
-    const quantity = document.createElement('p');
-    quantity.classList.add('container'); 
-    quantity.textContent = "Quantity : ";
-    card.appendChild(quantity) 
-
-    const minusBtn = document.createElement('button') 
-    minusBtn.classList.add('minus')
-    minusBtn.textContent = "-"
-    quantity.appendChild(minusBtn) 
-    minusBtn.onclick = () => { 
-        counter > 0 ? --counter && (qty.textContent = counter) && (total.textContent = `TOTAL : ${totall * counter}`) : null
-        counter == 0 ? (total.textContent = `TOTAL : 0`)  && (qty.textContent = counter) : null
+    
+    const minusBtn = document.querySelector('.minus')
+    const plusBtn = document.querySelector('.plus') 
+    const closeBtn = document.querySelector('.close') 
+    const card = document.querySelector('.card')
+    function increase () {
+    
+        ++quantity && (quantity = quantity) && invoice({[id] :totall* quantity}) 
+        console.log(quantity)
     }
 
-    const qty = document.createElement('p'); 
-    qty.textContent = counter;
-    quantity.appendChild(qty) 
+    closeBtn.onclick = function (){  
+        const myIds = JSON.parse(localStorage.getItem('id')) 
+        let index = myIds.findIndex((item) => item.id == el.id)
+        console.log('closed')
+        if(index != -1) {
+            myIds.splice( index, 1) 
+            localStorage.setItem('id', JSON.stringify(myIds))
+        }
 
-    const plusBtn = document.createElement('button') 
-    plusBtn.classList.add('plus')
-    plusBtn.textContent = "+" 
-    quantity.appendChild(plusBtn) 
-    plusBtn.onclick = () => ++counter && (qty.textContent = counter) && (total.textContent = `TOTAL : ${totall * counter}`); 
+        cardsContainer.removeChild(card) 
+    }  
 
-    const total = document.createElement('p'); 
-    total.textContent = `TOTAL : ${totall}`;
-    card.appendChild(total) 
-    
-    cardsContainer.appendChild(card)
-
-    span.onclick = () => cardsContainer.removeChild(card) 
+    invoice({[id]: totall})
 } 
 
+function decrease (quantity, totall, id){ 
+    quantity > 0 ? --quantity && (quantity = quantity) && invoice({[id] :totall* quantity}) : null
+    quantity == 0 ? (qty.textContent = quantity) : null
+} 
 
+ 
+ let arr = []
+ let sum 
+function invoice(obj) {  
+    console.log(obj)
+    let objToUpdate
+    let index
+   
+
+    if(arr.length != 0 && obj != (undefined || null)) {
+
+        objToUpdate = arr.find(object => object != (undefined || null) ? Object.keys(object).toString() == Object.keys(obj).toString() : null) 
+        index = arr.findIndex(item => item == objToUpdate)
+    }
+    else if(index != -1) {
+        arr.splice(index , 1, obj)
+    } else {
+        arr.push(obj)
+    }
+    //console.log(arr)
+    sum = arr.reduce((acc, obj) => {
+        if (obj != (undefined || null)) {
+            return acc + +Object.values(obj)
+        } else {
+            return acc
+        }
+    }, 0)
+    //console.log(sum) 
+    return sum
+} 
+
+total_pg.innerText = invoice()
 

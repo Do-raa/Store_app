@@ -2,6 +2,10 @@ body {
     background-color: #F5F5F5;
 }
 
+#active:hover {
+    color: rgb(144, 136, 136);
+} 
+
 #carouselExampleCaptions {
     margin: 80px;
 }
@@ -68,7 +72,7 @@ h6 {
 }
 
 .nav  li  a:hover { 
-    color: #e14e6be1;
+    color: #fa7b88e1;
 } 
 
 #sign_in {  

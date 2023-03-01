@@ -3,7 +3,9 @@ const input = document.querySelector('input')
 const pricedropdown = document.getElementById('pricedropdown')
 const categorydropdown = document.getElementById('categorydropdown')
 const signIn_icon = document.getElementById('sign_in') 
-const signOut_icon = document.getElementById('sign_out')
+const signOut_icon = document.getElementById('sign_out') 
+const spinner = document.getElementById('spinner')
+let isLoading = true
 let filteredData 
 
 
@@ -22,16 +24,20 @@ function setIcon() {
 
 setIcon()
 
-fetch('../data.json')
+const setSpinner = () => {
+    isLoading == true? spinner.style.visibility = 'visible' : spinner.style.visibility = 'hidden'
+}
+
+setSpinner()
+
+fetch('https://api.escuelajs.co/api/v1/products')
 .then(response => response.json())
 .then(data => { 
-    data.forEach(el => {
-    createCardForProduct(el)
-    }) 
+    data.forEach(el => el.id <= 200 ? createCardForProduct(el) & (isLoading = false) & setSpinner(): null) 
 
     input.addEventListener('input', () =>{
         cardsContainer.innerHTML = ""
-        filteredData = data.filter(el =>  el.name.toLowerCase().includes(input.value.toLowerCase())) 
+        filteredData = data.filter(el => el.id <= 200 ? el.title.toLowerCase().includes(input.value.toLowerCase()) : null) 
         filteredData.length != 0 ?  filteredData.forEach(el => createCardForProduct(el)) : cardsContainer.innerHTML = "No result found !" 
     })
 
@@ -94,16 +100,16 @@ function createCardForProduct (el) {
     card.classList.add('card');
 
     let _img = document.createElement('img')
-    _img.src = el.imageLink
+    _img.src = el.images[0]  
 
     let cardTitle = document.createElement('h2') 
-    cardTitle.textContent = el.name 
+    cardTitle.textContent = el.title 
 
     let cardDes = document.createElement('p') 
     cardDes.textContent = el.description 
 
     const cardCategory = document.createElement('p');
-    cardCategory.textContent = `Category: ${el.category}`;
+    cardCategory.textContent = `Category: ${el.category.name}`;
 
     const cardPrice = document.createElement('p'); 
     cardPrice.classList.add('price')
@@ -125,7 +131,7 @@ function createCardForProduct (el) {
     //handle button 
     card.onclick = () => { 
         let id = el.id 
-        let category = el.category
+        let category = el.category.name
         sendData(id, category) 
         console.log(id)
     } 
@@ -138,7 +144,7 @@ function createCardForProduct (el) {
 
         const currentIds = JSON.parse(localStorage.getItem('id')) || [] 
         const existingProduct = currentIds.findIndex((item) => item.id == id) 
-       
+        
         if( existingProduct != -1) {
             let quantity = currentIds[existingProduct]?.quantity 
             console.log(quantity)

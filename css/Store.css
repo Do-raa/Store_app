@@ -9,6 +9,10 @@ body {
     margin-top: 80px;
 }
 
+#active:hover {
+    color: rgb(144, 136, 136);
+} 
+
 #box {
     width: 100%;
     max-width: 600px;
@@ -27,6 +31,11 @@ body {
     margin: 16px; 
     max-height: 500px;
     width: 400px;
+    cursor: pointer;
+} 
+
+.card:hover {
+    opacity: 0.7;
 }
 
 .card h2 {
@@ -57,10 +66,22 @@ body {
     justify-content: center;
 } 
 
-.dropdowns {
+.dropdowns { 
     display: flex; 
-    margin: 5% 10% 5% 70%; 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    flex-wrap: wrap;
+    position:absolute;
+    right:0; 
+    margin-top: 3%;
+    margin-right: 9%; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.dropdowns a:hover {
+    opacity: 0.6;
+}
+
+#spinner {
+    visibility: hidden; 
 }
 
 .cartbtn {
@@ -87,7 +108,7 @@ body {
 }
 
 .nav  li  a:hover { 
-    color: #e14e6be1;
+    color: #fa7b88e1;
 } 
 
 #sign_in {  

@@ -1,9 +1,14 @@
+    body {
+        background-color: #F5F5F5;
+    }
+    
     h3{
     margin: 50px 30px 10px;  
     font-family:'Tilt Prism';
     text-shadow: 1px 1px;
     color: #3C4048;
     }
+
     .card {
         display: flex; 
         align-items: center;

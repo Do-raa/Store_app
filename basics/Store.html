@@ -15,10 +15,10 @@
 
     <ul class="nav nav-tabs">
         <li class="nav-item-home">
-        <a class="nav-link active" aria-current="page"  href="./Home.html">Home</a>
+        <a class="nav-link" aria-current="page"  href="./Home.html">Home</a>
         </li>
         <li class="nav-item-store">
-        <a class="nav-link" href="./Store.html">Store</a>
+        <a id="active" class="nav-link active" href="./Store.html">Store</a>
         </li>
         <li class="nav-item-cart">
         <a class="nav-link" href="./Cart.html" >Cart</a>
@@ -36,24 +36,24 @@
     </div>
     
     <div class="dropdowns"> 
-        <div style="margin-right: 5px; max-width: 100%;">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <div style=" margin-right: 5px; max-width: 100%; overflow: hidden;">
+        <a style="background-color: #c6cb46" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Sort by : Price
         </a>
         
-        <ul class="dropdown-menu" id="pricedropdown">
+        <ul class="dropdown-menu" id="pricedropdown" style="background-color: #ECECEC; width: 70%;">
             <li><a class="dropdown-item" href="#">Less than 50.00</a></li>
             <li><a class="dropdown-item" href="#">Between 50.00 and 100.00</a></li>
             <li><a class="dropdown-item" href="#">Up to 100.00</a></li>
         </ul>
         </div> 
 
-        <div style="margin-right: 5px;  max-width: 100%;">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <div style=" margin-right: 5px;  max-width: 100%; overflow: hidden;">
+        <a style="background-color: #c6cb46" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Sort by : Category
         </a>
         
-        <ul class="dropdown-menu" id="categorydropdown" >
+        <ul class="dropdown-menu" id="categorydropdown" style="background-color: #ECECEC; width: 52%;">
             <li><a class="dropdown-item" href="#">Clothes</a></li>
             <li><a class="dropdown-item" href="#">Accessories</a></li> 
             <li><a class="dropdown-item" href="#">Shoes</a></li> 
@@ -61,7 +61,13 @@
         </div>
     </div>
 
-    <div id="cards-container"></div>
+    <div id="cards-container"> 
+        <div class="d-flex justify-content-center" id="spinner">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+    </div>
 
     <script src="../js/Store.js"></script>
 </body>
