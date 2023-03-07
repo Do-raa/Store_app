@@ -13,6 +13,13 @@ body {
     color: #fa7b88e1;
 }  
 
+h2 {
+    margin: 30px;
+    font-family:'Tilt Prism';
+    text-shadow: 1px 1px;
+    color: #3C4048;
+}
+
 #active:hover {
     color: rgb(144, 136, 136);
 }
@@ -59,7 +66,7 @@ body {
     flex-wrap: wrap; 
 }
 
-button {
+.minus {
     margin: 3px; 
     align-items: center; 
     border-radius: 4px; 
@@ -70,10 +77,46 @@ button {
     background-color: #D4D925; 
 } 
 
+.plus {
+    margin: 3px; 
+    align-items: center; 
+    border-radius: 4px; 
+    width: 25px; 
+    height: 25px; 
+    border: none;
+    font-weight: bold; 
+    background-color: #D4D925; 
+}
+
 button:hover {
     opacity: 0.5;
 } 
 
+#total {
+    text-align: center; 
+    font-size: 20px; 
+    font-weight: bold;
+    color : #40513B;
+    text-shadow: 2px 2px #9DC08B;
+    letter-spacing: 3px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#checkout { 
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content; 
+    text-align: center; 
+    margin-left: 72%; 
+    margin-bottom: 50px;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    padding: 10px;
+    font-weight: bold; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(to right, #CBEDD5, #62B6B7);
+}
 /* Style the close button (span) */
 .close {
     cursor: pointer;

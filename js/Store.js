@@ -33,12 +33,12 @@ setSpinner()
 fetch('https://api.escuelajs.co/api/v1/products')
 .then(response => response.json())
 .then(data => { 
-    data.forEach(el => el.id <= 200 ? createCardForProduct(el) & (isLoading = false) & setSpinner(): null) 
+    data.forEach(el => createCardForProduct(el) & (isLoading = false) & setSpinner()) 
 
     input.addEventListener('input', () =>{
         cardsContainer.innerHTML = ""
         filteredData = data.filter(el => el.id <= 200 ? el.title.toLowerCase().includes(input.value.toLowerCase()) : null) 
-        filteredData.length != 0 ?  filteredData.forEach(el => createCardForProduct(el)) : cardsContainer.innerHTML = "No result found !" 
+        filteredData.length != 0 ?  filteredData.forEach(el => createCardForProduct(el)) : cardsContainer.innerHTML = "No results found !" 
     })
 
 // Handle price range dropdown selection
@@ -100,7 +100,7 @@ function createCardForProduct (el) {
     card.classList.add('card');
 
     let _img = document.createElement('img')
-    _img.src = el.images[0]  
+    _img.src = el.images[2] 
 
     let cardTitle = document.createElement('h2') 
     cardTitle.textContent = el.title 
@@ -137,23 +137,23 @@ function createCardForProduct (el) {
     } 
 
     btn.addEventListener("click", (e) =>{ 
-        let id = el.id 
+        const {id} = el 
         //e.preventDefault()
         e.stopPropagation()
         window.location.href = 'http://127.0.0.1:5500/basics/Cart.html' 
 
-        const currentIds = JSON.parse(localStorage.getItem('id')) || [] 
+        const currentIds = JSON.parse(localStorage.getItem('products')) || [] 
         const existingProduct = currentIds.findIndex((item) => item.id == id) 
         
         if( existingProduct != -1) {
             let quantity = currentIds[existingProduct]?.quantity 
-            console.log(quantity)
+            //console.log(quantity)
             if( quantity ) { 
                 currentIds[existingProduct].quantity = quantity+1 
             }
-            localStorage.setItem('id', JSON.stringify([...currentIds]))
+            localStorage.setItem('products', JSON.stringify([...currentIds]))
         } else {
-            localStorage.setItem('id', JSON.stringify([...currentIds, {quantity : 1, id}]))
+            localStorage.setItem('products', JSON.stringify([...currentIds, {quantity : 1, ...el}]))
         }
         
     }) 

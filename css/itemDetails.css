@@ -3,11 +3,21 @@
     }
     
     h3{
-    margin: 50px 30px 10px;  
+    text-align: center;
     font-family:'Tilt Prism';
     text-shadow: 1px 1px;
     color: #3C4048;
     }
+
+    .fa {
+        margin: 40; 
+        color: #E90064;
+    } 
+    
+    .fa:hover {
+        opacity: 0.6;
+        cursor: pointer;
+    } 
 
     .card {
         display: flex; 
@@ -48,18 +58,7 @@
     }
     .container p:last-child {
         font-weight: bold;
-    }
-
-    .nav  li  a {
-        color: #ff0033e1;
-        font-size: 16px;
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-weight: bold;
-    }
-    
-    .nav  li  a:hover { 
-        color: #e14e6be1;
-    }  
+    } 
 
     #product-list {
         display: flex; 
@@ -70,6 +69,7 @@
 
     #similar-products {
         display: flex; 
+        flex-wrap: wrap;
         align-items: center; 
         justify-content: center; 
         margin: 16px
@@ -107,40 +107,16 @@
         transition: 1s ease;
     } 
 
-    #sign_in {  
-        position:absolute;
-        right:0;
-        font-size: 40px; 
-        color: #3A4F7A;  
-        margin: 8px 30px 8px 2px; 
-        cursor: pointer;
-    } 
-    
-    #sign_in:hover {
-        opacity: 0.5;
-    } 
-    
-    #sign_out { 
-        position:absolute;
-        right:0;
-        font-size: 40px; 
-        color: #3A4F7A;  
-        margin: 8px 20px 8px 2px;  
-        cursor: pointer;
-    } 
-    
-    #sign_out:hover {
-        opacity: 0.5;
-    } 
-
     .previous {
         font-size: 50px;
-        color: #D4D925;
+        color: #D4D925; 
+        margin-bottom: 70px;
     }
     
     .next {
         font-size: 50px;
         color: #D4D925;
+        margin-bottom: 70px;
     }
     
     .round {

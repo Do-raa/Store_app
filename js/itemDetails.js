@@ -1,30 +1,14 @@
 const productList = document.getElementById('product-list')
-const signIn_icon = document.getElementById('sign_in') 
-const signOut_icon = document.getElementById('sign_out')
 const previous = document.querySelector('.previous') 
 const next = document.querySelector('.next')
 const identicalProductsContainer = document.getElementById('similar-products') 
+const back_icon = document.querySelector('i')
 const arr = [] 
-let start = 4 
-let end = 0
+let start = 0 
+let end = 4
 
 const urlParams = new URLSearchParams(window.location.search)
 const info = urlParams.get('id').split('?'); 
-
-signIn_icon.onclick = () =>  window.location.href = 'http://127.0.0.1:5500/basics/SignIn.html' 
-signOut_icon.onclick = () => localStorage.setItem('email', '') & setIcon() & (window.location.href = 'http://127.0.0.1:5500/basics/Home.html' )
-
-function setIcon() {
-    if(localStorage.getItem('email')) {
-    signIn_icon.style.display = 'none' 
-    signOut_icon.style.display = 'inline-block'
-    } else {
-    signIn_icon.style.display = 'inline-block'
-    signOut_icon.style.display = 'none'
-    }
-}
-
-setIcon()
 
 //fetch data that has the same id as the query do and create a card for it 
 fetch('https://api.escuelajs.co/api/v1/products')
@@ -103,15 +87,14 @@ function createCardForProduct (el) {
 }  
 
 function displaySlides() {
-    
     identicalProductsContainer.innerHTML = ''; 
-    const newArr = arr.slice(end, start) 
+    const newArr = arr.slice(start, end) 
     newArr.every(node => identicalProductsContainer.appendChild(node)) 
 }
 
 next.addEventListener('click', (e) => {  
     e.preventDefault() 
-    while(start < arr.length && end >= 0) {
+    if(start < end && end <= arr.length ) {
         ++start 
         ++end
         displaySlides()
@@ -120,9 +103,13 @@ next.addEventListener('click', (e) => {
 
 previous.addEventListener('click', (e) => {  
     e.preventDefault() 
-    while(start > end  && end > 0) {
+    if(start < end  && start > 0) {
         --start 
         --end
         displaySlides() 
     }
-})
+}) 
+
+back_icon.onclick = () => {
+    history.back()
+}
