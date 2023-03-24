@@ -30,7 +30,7 @@ const setSpinner = () => {
 
 setSpinner()
 
-fetch('https://api.escuelajs.co/api/v1/products')
+fetch('https://fakestoreapi.com/products')
 .then(response => response.json())
 .then(data => { 
     data.forEach(el => createCardForProduct(el) & (isLoading = false) & setSpinner()) 
@@ -66,26 +66,34 @@ Array.from(pricedropdown.children).map(el => {
         })
     })})
 
+// Handle category dropdown  
+function categoryDropdown () { 
+    const arr = [] 
+    data.forEach(el =>{  
+        if(!arr.includes(el.category)){
+            arr.push(el.category)
+        }
+    })  
+    arr.map(category => {
+        const myList = document.createElement('li') 
+        const myhref = document.createElement('a')
+        myhref.classList.add('dropdown-item')
+        myhref.textContent = category 
+        myList.appendChild(myhref)
+        categorydropdown.appendChild(myList)
+    })
+}
+
+categoryDropdown()
 
 // Handle category dropdown selection
 Array.from(categorydropdown.children).map(el => {
     el.addEventListener('click', function() {
         const category = this.textContent;
         cardsContainer.innerHTML = ""; // Clear existing cards
-        let filteredData;
-        switch (category) {
-        case "Clothes":
-            filteredData = data.filter(el => el.category === "clothes");
-            break;
-        case "Accessories":
-            filteredData = data.filter(el => el.category === "accessories");
-            break;
-        case "Shoes":
-            filteredData = data.filter(el => el.category === "shoes");
-            break;
-        default:
-            filteredData = data;
-        }
+
+        let filteredData = data.filter(el => el.category === category);
+        
         // Create cards for products in the selected category
         filteredData.forEach(el => {
         createCardForProduct(el);
@@ -93,6 +101,16 @@ Array.from(categorydropdown.children).map(el => {
     }) 
 })
 }) 
+
+//handle the rating function 
+function ratings(el, ratingDiv) {
+el.rating.rate <= 1 ?  ratingDiv.children[0].classList.add('checked') 
+    : el.rating.rate <= 2 ? ratingDiv.children[0].classList.add('checked') & ratingDiv.children[1].classList.add('checked') 
+    : el.rating.rate <= 3 ? ratingDiv.children[0].classList.add('checked') & ratingDiv.children[1].classList.add('checked') & ratingDiv.children[2].classList.add('checked') 
+    : el.rating.rate <= 4 ? ratingDiv.children[0].classList.add('checked') & ratingDiv.children[1].classList.add('checked') & ratingDiv.children[2].classList.add('checked') & ratingDiv.children[3].classList.add('checked')
+    : ratingDiv.children[0].classList.add('checked') & ratingDiv.children[1].classList.add('checked') & ratingDiv.children[2].classList.add('checked') & ratingDiv.children[3].classList.add('checked') & ratingDiv.children[4].classList.add('checked')
+}
+
 // Create cards for products
 function createCardForProduct (el) {
 
@@ -100,16 +118,22 @@ function createCardForProduct (el) {
     card.classList.add('card');
 
     let _img = document.createElement('img')
-    _img.src = el.images[2] 
+    _img.src = el.image
 
     let cardTitle = document.createElement('h2') 
     cardTitle.textContent = el.title 
 
-    let cardDes = document.createElement('p') 
-    cardDes.textContent = el.description 
-
     const cardCategory = document.createElement('p');
-    cardCategory.textContent = `Category: ${el.category.name}`;
+    cardCategory.textContent = `Category: ${el.category}`; 
+
+    const ratingDiv = document.createElement('div') 
+    ratingDiv.classList.add('tooltipp')
+    ratingDiv.innerHTML = `<span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>`  
+    ratings(el, ratingDiv)
 
     const cardPrice = document.createElement('p'); 
     cardPrice.classList.add('price')
@@ -121,17 +145,17 @@ function createCardForProduct (el) {
 
     card.appendChild(cardTitle)
     card.appendChild(_img)
-    card.appendChild(cardDes) 
     card.appendChild(cardCategory)
+    card.appendChild(ratingDiv)
     card.appendChild(cardPrice)
     card.appendChild(btn) 
 
     cardsContainer.appendChild(card)
 
-    //handle button 
+    //send data to the item datails page by clicking on the card
     card.onclick = () => { 
         let id = el.id 
-        let category = el.category.name
+        let category = el.category
         sendData(id, category) 
         console.log(id)
     } 

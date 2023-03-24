@@ -43,10 +43,10 @@ if(cardsContainer.innerHTML == "") {
         <p class = "close"> X </p> 
         <div class="content">
         <div>
-        <img src="${el.images[2]}" alt ='img' />  
+        <img src="${el.image}" alt ='img' />  
         </div>
         <div style="margin-left: 20px; padding: 10px">
-        <p>Category: ${el.category.name}</p> 
+        <p>Category: ${el.category}</p> 
         <p>Price: $${price}</p> 
         <p> Quantity : </p> 
         <button class ="minus"> - </button> 
@@ -96,7 +96,7 @@ function calculateTotal() {
     let sum = 0
     myProducts.forEach(item => sum += item.quantity * item.price) 
     //console.log(sum) 
-    return sum
+    return sum.toFixed(2)
 }
 
 total_pg.innerHTML = 'Total :' + calculateTotal()

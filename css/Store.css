@@ -29,9 +29,11 @@ body {
     border-radius: 4px;
     padding: 16px;
     margin: 16px; 
-    max-height: 500px;
+    max-height:max-content;
     width: 400px;
-    cursor: pointer;
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
 } 
 
 .card:hover {
@@ -41,7 +43,8 @@ body {
 .card h2 {
     font-size: 24px;
     font-family: monospace;
-    font-weight: bold;
+    font-weight: bold; 
+    margin-bottom: 40px;
 }
 
 .card p {
@@ -50,9 +53,9 @@ body {
 }
 
 .card img {
-    max-width: 400px;
+    width: 70%;
     max-height: 200px;
-    margin-bottom: 5px; 
+    margin-bottom: 20px;  
 }
 .price{
     font-weight: bold;
@@ -73,7 +76,12 @@ body {
     right:0; 
     margin-top: 3%;
     margin-right: 9%; 
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif; 
+}
+
+.dropdowns a {
+    text-transform: capitalize;
+    font-weight: bold; 
 }
 
 .dropdowns a:hover {
@@ -93,7 +101,7 @@ body {
     font-size: 18px;
     font-weight: bold; 
     padding: 5px; 
-    /* margin-bottom: 2px; this is not working */
+    margin-bottom: 10px;
 } 
 
 .cartbtn:hover {
@@ -135,4 +143,8 @@ body {
 
 #sign_out:hover {
     opacity: 0.5;
-}
+} 
+
+.checked {
+    color: #FFED00;
+} 

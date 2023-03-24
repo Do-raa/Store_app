@@ -11,12 +11,12 @@ const urlParams = new URLSearchParams(window.location.search)
 const info = urlParams.get('id').split('?'); 
 
 //fetch data that has the same id as the query do and create a card for it 
-fetch('https://api.escuelajs.co/api/v1/products')
+fetch('https://fakestoreapi.com/products')
         .then(response => response.json())
         .then(data => { 
             data.forEach(el => {
-                el.id <= 200   && el.id == info[0] ? createCardForProduct(el) : null 
-                el.id <= 200   && el.category.name == info[1] && el.id != info[0]?  imagesContainer(el) : null 
+                el.id == info[0] ? createCardForProduct(el) : null 
+                el.category == info[1] && el.id != info[0]?  imagesContainer(el) : null 
             }) 
 
         }) 
@@ -27,7 +27,7 @@ function imagesContainer (el) {
     slides.classList.add('slides');
 
     let _img = document.createElement('img') 
-    _img.src = el.images[0] 
+    _img.src = el.image 
 
     slides.appendChild(_img)
     arr.push(slides) 
@@ -42,7 +42,7 @@ function createCardForProduct (el) {
     card.classList.add('card');
 
     let _img = document.createElement('img')
-    _img.src = el.images[0]
+    _img.src = el.image
 
     let cardTitle = document.createElement('h2') 
     cardTitle.textContent = el.title 
@@ -53,20 +53,11 @@ function createCardForProduct (el) {
     let title = document.createElement('h5') 
     title.textContent = 'DESCRIPTIF TECHNIQUE'  
 
-    let dateOfCreation = document.createElement('p') 
-    let date = Date(el.creationdAt)
-    dateOfCreation.textContent = `Created At : ${date.split(' ')[2] + "/" + date.split(' ')[3]}`; 
-
     let cardDes = document.createElement('p') 
     cardDes.textContent = el.description 
 
     const cardCategory = document.createElement('p');
-    cardCategory.textContent = `Category : ${el.category.name}`;
-
-    let _img1 = document.createElement('img')
-    _img1.src = el.category.image 
-    _img1.style.width = '20%' 
-    _img1.style.length = '20%'
+    cardCategory.textContent = `Category : ${el.category}`;
 
     const cardPrice = document.createElement('p');
     cardPrice.textContent = `Price : $${el.price}`; 
@@ -79,8 +70,6 @@ function createCardForProduct (el) {
     container.appendChild(title)
     container.appendChild(cardDes) 
     container.appendChild(cardCategory)
-    container.appendChild(_img1)
-    container.appendChild(dateOfCreation)
     container.appendChild(cardPrice)
 
     productList.appendChild(container)
