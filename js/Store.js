@@ -111,7 +111,10 @@ el.rating.rate <= 1 ?  ratingDiv.children[0].classList.add('checked')
     : ratingDiv.children[0].classList.add('checked') & ratingDiv.children[1].classList.add('checked') & ratingDiv.children[2].classList.add('checked') & ratingDiv.children[3].classList.add('checked') & ratingDiv.children[4].classList.add('checked')
 }
 
-// Create cards for products
+/** 
+ * Create cards for products 
+ * @type{string}
+ */
 function createCardForProduct (el) {
 
     const card = document.createElement('div') 
