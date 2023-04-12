@@ -5,9 +5,9 @@ After that, I shared the diagram of the application and I explained the technolo
 Then I shared the screenshots of each page of the website , indicating some explanations above them. In an other slide, I added a screencast video of the website .
 Last but not least, you will find a summary of what has changed compared to my proposal. 
 
-**Start the app** 
- please enter the file then open it with the live server of your code editor 
- To start the application you can simply open the Home.html  file in your web browser to run it. Here are the steps:
+**To start the app** 
+ please enter the Home.html file then open it with the live server of your code editor 
+ To start the application you can simply open the Home.html file in your web browser to run it. Here are the steps:
 
 - Download or clone the project to your local machine.
 - Open the project folder and locate the Home.html file.
