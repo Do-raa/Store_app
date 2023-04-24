@@ -30,7 +30,8 @@ h2 {
     box-shadow: 5px 5px 5px 5px #ddd;
     padding: 16px;
     margin: 16px; 
-    max-height: 700px;
+    max-height: 1000px; 
+    min-width: fit-content;
     width: 100%;
 }
 
